@@ -13,6 +13,6 @@ namespace ManyToMany.Entities
 
         //  public ICollection<Student> Students { get; set; } = new HashSet<Student>();//Navigational property(Many)
         public ICollection<StudentCourse> studentCourses { get; set; } = new HashSet<StudentCourse>();
-
+        public ICollection<CourseIns> courseIns { get; set; }=new HashSet<CourseIns>();
     }
 }

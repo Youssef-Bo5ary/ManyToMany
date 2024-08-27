@@ -39,8 +39,18 @@ namespace ManyToMany.Context
                                         .IsRequired(true)//should have a value
                                         .HasForeignKey(SC => SC.StudentId);
 
+            modelBuilder.Entity<CourseIns>()
+               .HasKey(SC => new { SC.CourseId, SC.InsId });
 
-           
+            modelBuilder.Entity<Instructor>().HasMany(S => S.CourseIns)
+                                             .WithOne(C => C.instructor)
+                                             .IsRequired(true)
+                                             .HasForeignKey(I => I.InsId);
+            modelBuilder.Entity<Course>().HasMany(S => S.courseIns)
+                                        .WithOne(SC => SC.Course)
+                                        .IsRequired(true)//should have a value
+                                        .HasForeignKey(SC => SC.CourseId);
+
 
 
             base.OnModelCreating(modelBuilder);
